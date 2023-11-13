@@ -1,0 +1,42 @@
+// Motor A connections
+#include <IRremote.h>
+IRrecv IR(3);
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+
+
+void setup() {
+  // Set all the motor control pins to outputs
+   IR.enableIRIn();
+Serial.begin(115200);
+Serial.println("start");
+
+  pinMode(enA, OUTPUT);
+
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  
+  // Turn off motors - Initial state
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+}
+
+void loop() {
+  if(IR.decode()){
+   Serial.println( IR.decodedIRData.decodedRawData, HEX);
+   if(IR.decodedIRData.decodedRawData == 0xF30CFF00){
+    digitalWrite(in1, HIGH in2, LOW); }
+    
+   if(IR.decodedIRData.decodedRawData == 0xC704172E){
+    digitalWrite(in1, LOW in2, HIGH) ;}
+
+   delay(1500);
+   IR.resume();
+   
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  delay(2000);
+  }
+}
+
