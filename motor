@@ -8,9 +8,9 @@ int in2 = 7;
 
 void setup() {
   // Set all the motor control pins to outputs
-   IR.enableIRIn();
-Serial.begin(115200);
-Serial.println("start");
+  IR.enableIRIn();
+  Serial.begin(115200);
+  Serial.println("start");
 
   pinMode(enA, OUTPUT);
 
@@ -20,6 +20,7 @@ Serial.println("start");
   // Turn off motors - Initial state
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
+  Serial.println("finish");
 }
 
 void loop() {
@@ -30,16 +31,20 @@ void loop() {
     digitalWrite(in2, LOW); 
     }
 
-   if(IR.decodedIRData.decodedRawData == 0xC704172E){
+   if(IR.decodedIRData.decodedRawData == 0xE718FF00){
     digitalWrite(in1,LOW);
+    digitalWrite(in2,HIGH);
+    }
+    
+   if(IR.decodedIRData.decodedRawData == 0xA15EFF00){
+    digitalWrite(in1,HIGH);
     digitalWrite(in2,HIGH);
     }
 
    delay(1500);
    IR.resume();
 
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-  delay(2000);
+   
+   delay(2000);
   }
 }
