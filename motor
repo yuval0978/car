@@ -16,7 +16,7 @@ Serial.println("start");
 
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
-  
+
   // Turn off motors - Initial state
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
@@ -26,17 +26,20 @@ void loop() {
   if(IR.decode()){
    Serial.println( IR.decodedIRData.decodedRawData, HEX);
    if(IR.decodedIRData.decodedRawData == 0xF30CFF00){
-    digitalWrite(in1, HIGH in2, LOW); }
-    
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW); 
+    }
+
    if(IR.decodedIRData.decodedRawData == 0xC704172E){
-    digitalWrite(in1, LOW in2, HIGH) ;}
+    digitalWrite(in1,LOW);
+    digitalWrite(in2,HIGH);
+    }
 
    delay(1500);
    IR.resume();
-   
+
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   delay(2000);
   }
 }
-
